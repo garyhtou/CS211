@@ -1,4 +1,4 @@
-package MinMaxAccount;
+package Chapter9.MinMaxAccount;
 
 /*
  * Gary Tou
@@ -10,7 +10,7 @@ public class MinMaxAccount extends BankingAccount {
     private int max; //maximum balance ever recorded
 
     /**
-     * Constructor for new MinMaxAccount and sets the min max to current balance
+     * Constructor for new Chapter9.MinMaxAccount and sets the min max to current balance
      * @param s Startup
      */
     public MinMaxAccount(Startup s){
@@ -20,7 +20,7 @@ public class MinMaxAccount extends BankingAccount {
     }
 
     /**
-     * Sends debit request and udpates min max balance
+     * Sends debit request and updates min max balance. Overrides parent class
      * @param d debit request
      */
     public void debit(Debit d){
@@ -29,7 +29,7 @@ public class MinMaxAccount extends BankingAccount {
     }
 
     /**
-     * Sends credit request and updates min max balance
+     * Sends credit request and updates min max balance. Overrides parent class
      * @param c credit request
      */
     public void credit(Credit c){
@@ -38,8 +38,8 @@ public class MinMaxAccount extends BankingAccount {
     }
 
     /**
-     * Updates the minimum and maximum account balance using the current balance
-     * @return min. bal
+     * Updates the minimum and maximum account balance using the current balance.
+     * I created this method to prevent having the same code in multiple places (coding best practice)
      */
     private void updateMinMax(){
         if(this.getBalance() < min){ //sets new min balance if current balance is below it
