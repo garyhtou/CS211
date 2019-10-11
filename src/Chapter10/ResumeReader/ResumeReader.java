@@ -15,10 +15,10 @@ public class ResumeReader {
         File[] resume = new File("E:\\Programming\\IntelliJ Projects\\CS 211\\src\\Chapter10\\ResumeReader\\Resume").listFiles();
 
 
-        ArrayList<String> ignoreList = new ArrayList<>();
+        //ArrayList<String> ignoreList = new ArrayList<>();
         ArrayList<String> keywordsList = new ArrayList<>();
 
-        addToArrayList(ignoreFile, ignoreList);
+        //addToArrayList(ignoreFile, ignoreList);
         addToArrayList(keywordsFile, keywordsList);
 
         for(File currentResume : resume) {
@@ -29,7 +29,7 @@ public class ResumeReader {
             String name = scan.nextLine();
             while (scan.hasNext()) {
                 String current = scan.next();
-                if (keywordsList.contains(current)){
+                if (keywordsList.contains(current.toLowerCase())){
                     currentScore++;
                 }
             }
@@ -43,7 +43,7 @@ public class ResumeReader {
     public static void addToArrayList(File file, ArrayList list) throws java.io.FileNotFoundException{
         Scanner scan = new Scanner(file);
         while(scan.hasNextLine()){
-            list.add(scan.nextLine());
+            list.add(scan.nextLine().toLowerCase());
         }
     }
 
