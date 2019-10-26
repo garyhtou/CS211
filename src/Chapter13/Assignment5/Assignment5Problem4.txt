@@ -1,0 +1,7 @@
+Gary Tou
+10/24/2019
+Assignment 5
+Chapter 13, Exercise 4
+
+The mystery1 method will have a complexity of 2N+1.
+This is because there are two calls within a for loop which iterates the whole array. This complexity is N(1+1) which is 2N. The assignment of int[] result would be 1. Therefore, the runtime complexity of the mystery 1 method is 2N+1.
