@@ -49,23 +49,33 @@ public class Chapter14 {
      * @param integers Queue of Integers
      * @return interleaved queue
      */
-    public static Queue<Integer> interleave(Queue<Integer> integers){
+    public static void interleave(Queue<Integer> integers){
         if(integers.size() % 2 == 1){ //exit if array size is not even
             throw new IllegalArgumentException("no Integers in Queue");
         }
 
-        Queue<Integer> left = new LinkedList<>(); //queue to store left side
+        Stack<Integer> left = new Stack<>(); //queue to store left side
 
         int size = integers.size(); //store size of queue because it will change
-        for(int i = 0; i < size/2; i++){ //move left side elements into new queue
+        for(int i = 0; i < size/2; i++){ //move left side elements into new stack
             left.add(integers.remove());
         }
 
-        while(!left.isEmpty()){ //while left side queue is not empty, add left and right (alternate) to the end.
-            integers.add(left.remove());
+        while(!left.isEmpty()){ //rearrange left side to be on right side.
+            integers.add(left.pop());
+        }
+        for(int i = 0; i < size/2; i++){//feed original right side into stack
+            left.add(integers.remove());
+        }
+        while(!left.isEmpty()){ //interleave. but results will be reversed
+            integers.add(left.pop());
             integers.add(integers.remove());
         }
-
-        return integers; //return interleaved Queue
+        while(!integers.isEmpty()){ //feed all numbers into stack to reverse results
+            left.add(integers.remove());
+        }
+        while(!left.isEmpty()){ //feed all results back into queue
+            integers.add(left.pop());
+        }
     }
 }
