@@ -213,29 +213,5 @@ public class HashIntSet {
         return true;
     }
 
-    /**
-     * Assignment 9
-     * EXERCISE 9
-     * returns the kth smallest element within the queue
-     * @param queue target queue
-     * @param k kth smallest element
-     * @return the kth smallest element within the queue
-     */
-    public int kthSmallest(PriorityQueue<Integer> queue, int k){
-        if(k < 1 || k > queue.size()){
-            throw new IllegalArgumentException("k out of bounds");
-        }
-        Queue<Integer> aux = new LinkedList<Integer>();
-        for(int i = 0; i < k-1; i++){
-            aux.add(queue.remove());
-        }
-        int value = queue.remove();
-        while(!aux.isEmpty()){
-            queue.add(aux.remove());
-        }
-        return value;
-    }
-
-    //11
 }
 

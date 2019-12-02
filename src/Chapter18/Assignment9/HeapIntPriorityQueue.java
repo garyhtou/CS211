@@ -1,7 +1,9 @@
 package Chapter18.Assignment9;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.NoSuchElementException;
+import java.util.Queue;
 
 // Implements a priority queue of integers using a
 // min-heap represented as an array.
@@ -160,6 +162,50 @@ public class HeapIntPriorityQueue {
         while (!pq.isEmpty()) {
             pq.remove();
             System.out.println("remove: " + Arrays.toString(a));
+        }
+    }
+
+
+    /**
+     * Assignment 9
+     * EXERCISE 9
+     * returns the kth smallest element within the queue
+     * @param pq target queue
+     * @param k kth smallest element
+     * @return the kth smallest element within the queue
+     */
+    public static int kthSmallest(HeapIntPriorityQueue pq, int k){
+        if(k < 1 || k > pq.size()){
+            throw new IllegalArgumentException("k out of bounds");
+        }
+        Queue<Integer> aux = new LinkedList<Integer>();
+        for(int i = 0; i < k-1; i++){
+            aux.add(pq.remove());
+        }
+        int value = pq.peek();
+        while(!aux.isEmpty()){
+            pq.add(aux.remove());
+        }
+        return value;
+    }
+
+    /**
+     * Assignment 9
+     * EXERCISE 11
+     * Removes all duplicates within a HeapIntPriorityQueue
+     * @param pq HeapIntPriorityQueue to remove duplicates from
+     */
+    public static void removeDuplicates(HeapIntPriorityQueue pq){
+        Queue<Integer> aux = new LinkedList<Integer>();
+        while(!pq.isEmpty()){
+            if(!aux.contains(pq.peek())){
+                aux.add(pq.remove());
+            } else{
+                pq.remove();
+            }
+        }
+        while(!aux.isEmpty()){
+            pq.add(aux.remove());
         }
     }
 }
